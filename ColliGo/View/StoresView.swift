@@ -112,46 +112,50 @@ struct StoreRow: View {
     var kilometres: Double
     
     var body: some View {
-        HStack {
-            ZStack {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            gradient: Gradient(colors: [.lightRed, .darkRed]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
+        ZStack {
+            Color("cardBackground")
+            HStack {
+                ZStack {
+                    Circle()
+                        .fill(
+                            LinearGradient(
+                                gradient: Gradient(colors: [.lightRed, .darkRed]),
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
                         )
-                    )
+                    
+                    VStack {
+                        Text("\(kilometres.oneDecimalPrecision)").font(.system(size: 20, weight: .bold)).foregroundColor(.white)
+                        Text("km").font(.caption).foregroundColor(.white)
+                    }
+                }.frame(width: 70, height: 70, alignment: .center)
                 
-                VStack {
-                    Text("\(kilometres.oneDecimalPrecision)").font(.system(size: 20, weight: .bold)).foregroundColor(.white)
-                    Text("km").font(.caption).foregroundColor(.white)
-                }
-            }.frame(width: 70, height: 70, alignment: .center)
-            
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .lineLimit(2)
+                VStack(alignment: .leading) {
+                    Text(title)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .lineLimit(2)
+                        .padding(.bottom, 5)
+                    
+                    Text(address)
+                        .padding(.bottom, 5)
+                    
+                    HStack(alignment: .center) {
+                        Image(systemName: "mappin")
+                        Text(city)
+                    }
                     .padding(.bottom, 5)
-                
-                Text(address)
-                    .padding(.bottom, 5)
-                
-                HStack(alignment: .center) {
-                    Image(systemName: "mappin")
-                    Text(city)
-                }
-                .padding(.bottom, 5)
-                
-                HStack {
-                    ForEach(categories, id: \.id) { category in
-                        CategoryPill(categoryName: category.name!)
+                    
+                    HStack {
+                        ForEach(categories, id: \.id) { category in
+                            CategoryPill(categoryName: category.name!)
+                        }
                     }
                 }
-            }
+            }.padding(.vertical)
         }
+        .clipShape(RoundedRectangle(cornerRadius: 15))
     }
 }
 

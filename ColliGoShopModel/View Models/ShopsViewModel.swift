@@ -61,7 +61,7 @@ public final class ShopsViewModel: ObservableObject {
                     self.shops[index].distance = CLLocation(latitude: self.shops[index].lat!, longitude: self.shops[index].lng!).distance(from: CLLocation(latitude: currLat, longitude: currLng)) / 1000
                 }
                 
-                self.filteredShops = self.shops.filter({ $0.distance! < 20 })
+                self.filteredShops = self.shops.filter({ $0.distance! < 20 }).sorted(by: { $0.distance! < $1.distance! })
                 
                 self.fetching = false
             })
