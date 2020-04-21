@@ -8,18 +8,14 @@
 
 import SwiftUI
 import MapKit
+import ColliGoShopModel
 
 struct MapView: UIViewRepresentable {
     
-    @ObservedObject var locationManager = LocationManager()
+    @ObservedObject var shopsViewModel: ShopsViewModel
     
-    var userLatitude: CLLocationDegrees {
-        return locationManager.lastLocation?.coordinate.latitude ?? 0
-    }
-
-    var userLongitude: CLLocationDegrees {
-        return locationManager.lastLocation?.coordinate.longitude ?? 0
-    }
+    var userLatitude: CLLocationDegrees
+    var userLongitude: CLLocationDegrees
     
     class Coordinator: NSObject, MKMapViewDelegate {
         var parent: MapView
@@ -58,6 +54,6 @@ struct MapView: UIViewRepresentable {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MapView(shopsViewModel: ShopsViewModel(), userLatitude: 41.0, userLongitude: 41.0)
     }
 }

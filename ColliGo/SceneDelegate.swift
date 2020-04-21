@@ -8,10 +8,21 @@
 
 import UIKit
 import SwiftUI
+import MapKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    @ObservedObject var locationManager = LocationManager()
+    
+    var userLatitude: CLLocationDegrees {
+        return locationManager.lastLocation?.coordinate.latitude ?? 0
+    }
+    
+    var userLongitude: CLLocationDegrees {
+        return locationManager.lastLocation?.coordinate.longitude ?? 0
+    }
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -20,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let contentView = HomeView()
+        let contentView = HomeView(userLatitude: userLatitude, userLongitude: userLongitude)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

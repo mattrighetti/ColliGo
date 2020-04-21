@@ -7,56 +7,91 @@
 //
 
 import SwiftUI
-
-struct Store: Identifiable, Hashable {
-    let id: UUID = UUID()
-    let title: String
-    let address: String
-    let city: String
-    let categories: [String]
-    let kilometres: Double
-}
+import ColliGoShopModel
+import MapKit
 
 struct StoresView: View {
     
-    @State var showShopInfoModal: Bool = false
-    
-    var stores: [Store] = [
-        Store(title: "Salumeria di Mario Rossi", address: "Piazzale Lagosta", city: "Milano", categories: ["Salumeria"], kilometres: 2.3),
-        Store(title: "Vino Vino dal 1921", address: "Corso San Gottardo, 123", city: "Roma", categories: ["Salumeria"], kilometres: 0.3),
-        Store(title: "Gli Olivi di Etruria APS", address: "Via G. Contadini 55", city: "Montefiascone", categories: ["Oleoteca", "Gastronomia"], kilometres: 0.3),
-        Store(title: "Il Forno di Via Commenda", address: "Via Della Commenda, 21", city: "Venezia", categories: ["Panificio", "Pasticcieria", "Alimentari"], kilometres: 6.4),
-        Store(title: "Salumeria di Mario Rossi", address: "Piazzale Lagosta", city: "Catania", categories: ["Salumeria"], kilometres: 5.0),
-        Store(title: "Giovanni Galli", address: "Via Victor Hugo", city: "Verona", categories: ["Cioccolateria"], kilometres: 9.3),
-        Store(title: "Dal 1964 Enoteca EL VINATT", address: "Via Leone Tolstoi 49", city: "Milano", categories: ["Enoteca", "Alimentari", "Birroteca"], kilometres: 12.5),
-        Store(title: "Zabbara | Eccellenze Siciliane", address: "Via Saluzzo 49/d", city: "Torino", categories: ["Gastronomia"], kilometres: 1.4)
-    ]
-    
-    init() {
+    init(shopsViewModel: ShopsViewModel, userLat: CLLocationDegrees, userLng: CLLocationDegrees) {
         UITableView.appearance().backgroundColor = UIColor(named: "background")
         UITableView.appearance().separatorColor = UIColor(named: "background")
+        self.userLatitude = userLat
+        self.userLongitude = userLng
+        self.shopViewModel = shopsViewModel
     }
+    
+    @ObservedObject var shopViewModel: ShopsViewModel
+    @State var showShopInfoModal: Bool = false
+    
+    var userLatitude: CLLocationDegrees
+    var userLongitude: CLLocationDegrees
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(stores, id: \.self) { store in
-                    StoreRow(title: store.title, address: store.address, city: store.city, categories: store.categories, kilometres: store.kilometres)
-                        .onTapGesture(perform: {
-                            self.showShopInfoModal.toggle()
-                        })
-                        .listRowBackground(Color("background"))
-                }
-            }
+            generateView()
         
         .navigationBarTitle("Negozi")
         }
         .sheet(isPresented: $showShopInfoModal) {
             StoreView()
         }
+        .onAppear {
+            self.shopViewModel.fetchShops(currLat: self.userLatitude, currLng: self.userLongitude)
+        }
     }
     
+    func generateView() -> AnyView {
+        while shopViewModel.fetching {
+            return showFetching()
+        }
+        
+        if shopViewModel.filteredShops.count > 0 {
+            return showList()
+        } else {
+            return notifyNoShopAvailable()
+        }
+        
+    }
     
+    func showFetching() -> AnyView {
+        return AnyView(
+            ZStack {
+                Color("background").edgesIgnoringSafeArea(.all)
+                Text("Sto ottenendo i dati...")
+            }
+        )
+    }
+    
+    func showList() -> AnyView {
+        return AnyView(
+            List {
+                ForEach(shopViewModel.filteredShops, id: \.id) { shop in
+                    StoreRow(
+                        title: shop.name,
+                        address: shop.address!,
+                        city: shop.city!,
+                        categories: shop.categories,
+                        kilometres: shop.distance!
+                    ).listRowBackground(Color("background"))
+                }
+            }
+        )
+    }
+    
+    func notifyNoShopAvailable() -> AnyView {
+        return AnyView(
+            ZStack {
+                Color("background").edgesIgnoringSafeArea(.all)
+                VStack {
+                    Image(systemName: "mappin.slash")
+                        .font(.system(size: 50))
+                        .padding()
+                    
+                    Text("Non sono disponibili negozi nella tua zona").font(.headline)
+                }
+            }
+        )
+    }
     
 }
 
@@ -65,7 +100,7 @@ struct StoreRow: View {
     var title: String
     var address: String
     var city: String
-    var categories: [String]
+    var categories: [ColliGoShopModel.Category]
     var kilometres: Double
     
     var body: some View {
@@ -103,18 +138,12 @@ struct StoreRow: View {
                 .padding(.bottom, 5)
                 
                 HStack {
-                    ForEach(categories, id: \.self) { category in
-                        CategoryPill(categoryName: category)
+                    ForEach(categories, id: \.id) { category in
+                        CategoryPill(categoryName: category.name!)
                     }
                 }
             }
         }
-    }
-}
-
-struct StoresView_Previews: PreviewProvider {
-    static var previews: some View {
-        StoresView().environment(\.colorScheme, .dark)
     }
 }
 
@@ -132,5 +161,11 @@ struct CategoryPill: View {
                 .background(Color.green)
                 .cornerRadius(15)
         }
+    }
+}
+
+struct StoresView_Previews: PreviewProvider {
+    static var previews: some View {
+        StoresView(shopsViewModel: ShopsViewModel(), userLat: 41.0, userLng: 41.0).environment(\.colorScheme, .dark)
     }
 }

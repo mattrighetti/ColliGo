@@ -1,5 +1,5 @@
 //
-//  Shop.swift
+//  +Bundle.swift
 //  ColliGo
 //
 //  Created by Mattia Righetti on 21/04/2020.
@@ -7,23 +7,6 @@
 //
 
 import Foundation
-
-struct Shop: Identifiable, Codable {
-    let id: Int
-    let lat: Double
-    let lng: Double
-    let facebook: String
-    let phone: String
-    let name: String
-    let address: String
-    let created_at: String
-    let is_deleted: Bool
-    let categories: [Int]
-    let telegram: String
-    let description: String
-    let updated_at: String
-    let natural_key: String
-}
 
 extension Bundle {
     func decode<T: Decodable>(_ type: T.Type, from file: String, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate, keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys) -> T {

@@ -7,10 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C963C392244F282B003193D2 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C0F9D2244E8CF700C4D3FF /* Shop.swift */; };
+		C963C393244F282B003193D2 /* ShopsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BB36DC244F05D6000380EF /* ShopsViewModel.swift */; };
+		C963C394244F282B003193D2 /* ShopsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BB36DA244F04FB000380EF /* ShopsService.swift */; };
+		C963C395244F282B003193D2 /* ShopsDataPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BB36DF244F06AD000380EF /* ShopsDataPublisher.swift */; };
+		C9BB36D6244F03B4000380EF /* +Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BB36D5244F03B4000380EF /* +Bundle.swift */; };
+		C9BB36EA244F26E5000380EF /* ColliGoShopModel.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BB36E8244F26E5000380EF /* ColliGoShopModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9BB36ED244F26E5000380EF /* ColliGoShopModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9BB36E6244F26E5000380EF /* ColliGoShopModel.framework */; };
+		C9BB36EE244F26E5000380EF /* ColliGoShopModel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C9BB36E6244F26E5000380EF /* ColliGoShopModel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C9C0F9CE244E7FCF00C4D3FF /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C0F9CD244E7FCF00C4D3FF /* MapView.swift */; };
 		C9C0F9D1244E886500C4D3FF /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C0F9D0244E886500C4D3FF /* LocationManager.swift */; };
-		C9C0F9D3244E8CF700C4D3FF /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C0F9D2244E8CF700C4D3FF /* Shop.swift */; };
-		C9C0F9D5244E8E1F00C4D3FF /* ShopsData.json in Resources */ = {isa = PBXBuildFile; fileRef = C9C0F9D4244E8E1F00C4D3FF /* ShopsData.json */; };
 		C9C0F9D7244E957300C4D3FF /* +Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C0F9D6244E957300C4D3FF /* +Double.swift */; };
 		C9FDD71B244E6E6A003A31CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDD71A244E6E6A003A31CF /* AppDelegate.swift */; };
 		C9FDD71D244E6E6A003A31CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDD71C244E6E6A003A31CF /* SceneDelegate.swift */; };
@@ -23,11 +29,41 @@
 		C9FDD737244E75A0003A31CF /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDD736244E75A0003A31CF /* StoreView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C9BB36EB244F26E5000380EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9FDD70F244E6E6A003A31CF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C9BB36E5244F26E5000380EF;
+			remoteInfo = ColliGoShopModel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C9BB36F2244F26E5000380EF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C9BB36EE244F26E5000380EF /* ColliGoShopModel.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		C9BB36D5244F03B4000380EF /* +Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Bundle.swift"; sourceTree = "<group>"; };
+		C9BB36DA244F04FB000380EF /* ShopsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsService.swift; sourceTree = "<group>"; };
+		C9BB36DC244F05D6000380EF /* ShopsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsViewModel.swift; sourceTree = "<group>"; };
+		C9BB36DF244F06AD000380EF /* ShopsDataPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsDataPublisher.swift; sourceTree = "<group>"; };
+		C9BB36E6244F26E5000380EF /* ColliGoShopModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ColliGoShopModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9BB36E8244F26E5000380EF /* ColliGoShopModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColliGoShopModel.h; sourceTree = "<group>"; };
+		C9BB36E9244F26E5000380EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9C0F9CD244E7FCF00C4D3FF /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		C9C0F9D0244E886500C4D3FF /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C9C0F9D2244E8CF700C4D3FF /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
-		C9C0F9D4244E8E1F00C4D3FF /* ShopsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ShopsData.json; sourceTree = "<group>"; };
 		C9C0F9D6244E957300C4D3FF /* +Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Double.swift"; sourceTree = "<group>"; };
 		C9FDD717244E6E6A003A31CF /* ColliGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColliGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FDD71A244E6E6A003A31CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,30 +79,74 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C9FDD714244E6E6A003A31CF /* Frameworks */ = {
+		C9BB36E3244F26E5000380EF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C9FDD714244E6E6A003A31CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9BB36ED244F26E5000380EF /* ColliGoShopModel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C9C0F9CF244E885300C4D3FF /* Model */ = {
+		C9BB36D8244F04AD000380EF /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				C9C0F9D0244E886500C4D3FF /* LocationManager.swift */,
-				C9C0F9D2244E8CF700C4D3FF /* Shop.swift */,
-				C9C0F9D4244E8E1F00C4D3FF /* ShopsData.json */,
+				C9BB36DC244F05D6000380EF /* ShopsViewModel.swift */,
 			);
-			path = Model;
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		C9BB36D9244F04E3000380EF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C9BB36DA244F04FB000380EF /* ShopsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C9BB36DE244F0693000380EF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C9BB36DF244F06AD000380EF /* ShopsDataPublisher.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		C9BB36E7244F26E5000380EF /* ColliGoShopModel */ = {
+			isa = PBXGroup;
+			children = (
+				C9C0F9CF244E885300C4D3FF /* Models */,
+				C9BB36D8244F04AD000380EF /* View Models */,
+				C9BB36D9244F04E3000380EF /* Services */,
+				C9BB36DE244F0693000380EF /* Protocols */,
+				C9BB36E8244F26E5000380EF /* ColliGoShopModel.h */,
+				C9BB36E9244F26E5000380EF /* Info.plist */,
+			);
+			path = ColliGoShopModel;
+			sourceTree = "<group>";
+		};
+		C9C0F9CF244E885300C4D3FF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C9C0F9D2244E8CF700C4D3FF /* Shop.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C9FDD70E244E6E6A003A31CF = {
 			isa = PBXGroup;
 			children = (
 				C9FDD719244E6E6A003A31CF /* ColliGo */,
+				C9BB36E7244F26E5000380EF /* ColliGoShopModel */,
 				C9FDD718244E6E6A003A31CF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				C9FDD717244E6E6A003A31CF /* ColliGo.app */,
+				C9BB36E6244F26E5000380EF /* ColliGoShopModel.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,7 +163,6 @@
 		C9FDD719244E6E6A003A31CF /* ColliGo */ = {
 			isa = PBXGroup;
 			children = (
-				C9C0F9CF244E885300C4D3FF /* Model */,
 				C9FDD731244E71BC003A31CF /* Utils */,
 				C9FDD72E244E714A003A31CF /* View */,
 				C9FDD71A244E6E6A003A31CF /* AppDelegate.swift */,
@@ -117,15 +197,46 @@
 		C9FDD731244E71BC003A31CF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C9C0F9D0244E886500C4D3FF /* LocationManager.swift */,
 				C9FDD732244E71CC003A31CF /* +Color.swift */,
 				C9C0F9D6244E957300C4D3FF /* +Double.swift */,
+				C9BB36D5244F03B4000380EF /* +Bundle.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		C9BB36E1244F26E5000380EF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9BB36EA244F26E5000380EF /* ColliGoShopModel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		C9BB36E5244F26E5000380EF /* ColliGoShopModel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9BB36EF244F26E5000380EF /* Build configuration list for PBXNativeTarget "ColliGoShopModel" */;
+			buildPhases = (
+				C9BB36E1244F26E5000380EF /* Headers */,
+				C9BB36E2244F26E5000380EF /* Sources */,
+				C9BB36E3244F26E5000380EF /* Frameworks */,
+				C9BB36E4244F26E5000380EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ColliGoShopModel;
+			productName = ColliGoShopModel;
+			productReference = C9BB36E6244F26E5000380EF /* ColliGoShopModel.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		C9FDD716244E6E6A003A31CF /* ColliGo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9FDD72B244E6E6B003A31CF /* Build configuration list for PBXNativeTarget "ColliGo" */;
@@ -133,10 +244,12 @@
 				C9FDD713244E6E6A003A31CF /* Sources */,
 				C9FDD714244E6E6A003A31CF /* Frameworks */,
 				C9FDD715244E6E6A003A31CF /* Resources */,
+				C9BB36F2244F26E5000380EF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C9BB36EC244F26E5000380EF /* PBXTargetDependency */,
 			);
 			name = ColliGo;
 			productName = ColliGo;
@@ -153,6 +266,9 @@
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Mattia Righetti";
 				TargetAttributes = {
+					C9BB36E5244F26E5000380EF = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
 					C9FDD716244E6E6A003A31CF = {
 						CreatedOnToolsVersion = 11.4.1;
 					};
@@ -172,16 +288,23 @@
 			projectRoot = "";
 			targets = (
 				C9FDD716244E6E6A003A31CF /* ColliGo */,
+				C9BB36E5244F26E5000380EF /* ColliGoShopModel */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C9BB36E4244F26E5000380EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C9FDD715244E6E6A003A31CF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9C0F9D5244E8E1F00C4D3FF /* ShopsData.json in Resources */,
 				C9FDD727244E6E6B003A31CF /* LaunchScreen.storyboard in Resources */,
 				C9FDD724244E6E6B003A31CF /* Preview Assets.xcassets in Resources */,
 				C9FDD721244E6E6B003A31CF /* Assets.xcassets in Resources */,
@@ -191,6 +314,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C9BB36E2244F26E5000380EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C963C392244F282B003193D2 /* Shop.swift in Sources */,
+				C963C393244F282B003193D2 /* ShopsViewModel.swift in Sources */,
+				C963C394244F282B003193D2 /* ShopsService.swift in Sources */,
+				C963C395244F282B003193D2 /* ShopsDataPublisher.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C9FDD713244E6E6A003A31CF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -200,15 +334,23 @@
 				C9FDD730244E716A003A31CF /* HomeView.swift in Sources */,
 				C9FDD733244E71CC003A31CF /* +Color.swift in Sources */,
 				C9C0F9D7244E957300C4D3FF /* +Double.swift in Sources */,
+				C9BB36D6244F03B4000380EF /* +Bundle.swift in Sources */,
 				C9C0F9D1244E886500C4D3FF /* LocationManager.swift in Sources */,
 				C9FDD71D244E6E6A003A31CF /* SceneDelegate.swift in Sources */,
-				C9C0F9D3244E8CF700C4D3FF /* Shop.swift in Sources */,
 				C9FDD737244E75A0003A31CF /* StoreView.swift in Sources */,
 				C9FDD71F244E6E6A003A31CF /* StoresView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C9BB36EC244F26E5000380EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C9BB36E5244F26E5000380EF /* ColliGoShopModel */;
+			targetProxy = C9BB36EB244F26E5000380EF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C9FDD725244E6E6B003A31CF /* LaunchScreen.storyboard */ = {
@@ -222,6 +364,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C9BB36F0244F26E5000380EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = H89RFW5UZ6;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ColliGoShopModel/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mattiarighetti.ColliGoShopModel;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C9BB36F1244F26E5000380EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = H89RFW5UZ6;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ColliGoShopModel/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mattiarighetti.ColliGoShopModel;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		C9FDD729244E6E6B003A31CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -339,6 +537,7 @@
 		C9FDD72C244E6E6B003A31CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ColliGo/Preview Content\"";
@@ -352,13 +551,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattiarighetti.ColliGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		C9FDD72D244E6E6B003A31CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ColliGo/Preview Content\"";
@@ -372,13 +572,22 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattiarighetti.ColliGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C9BB36EF244F26E5000380EF /* Build configuration list for PBXNativeTarget "ColliGoShopModel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9BB36F0244F26E5000380EF /* Debug */,
+				C9BB36F1244F26E5000380EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C9FDD712244E6E6A003A31CF /* Build configuration list for PBXProject "ColliGo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
