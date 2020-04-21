@@ -112,7 +112,7 @@ struct StoreRow: View {
     var kilometres: Double
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .leading) {
             Color("cardBackground")
             HStack {
                 ZStack {
@@ -152,10 +152,9 @@ struct StoreRow: View {
                             CategoryPill(categoryName: category.name!)
                         }
                     }
-                }
-            }.padding(.vertical)
-        }
-        .clipShape(RoundedRectangle(cornerRadius: 15))
+                }.padding(.horizontal, 5)
+            }.padding(15)
+        }.clipShape(RoundedRectangle(cornerRadius: 15))
     }
 }
 
@@ -168,6 +167,7 @@ struct CategoryPill: View {
         ZStack {
             Text(categoryName)
                 .font(.system(size: fontSize, weight: .regular))
+                .lineLimit(2)
                 .foregroundColor(.white)
                 .padding(5)
                 .background(Color.green)
