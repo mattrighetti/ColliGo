@@ -40,6 +40,29 @@ public struct Shop: Identifiable, Codable, Equatable {
         categories: []
     )
     
+    public static let starter = Shop(
+        id: 0,
+        natural_key: "starter",
+        name: "Starter",
+        address: "starter",
+        city: "",
+        cap: "",
+        lat: 0,
+        lng: 0,
+        phone: "",
+        whatsapp: "",
+        website: "",
+        telegram: "",
+        facebook: "",
+        description: "",
+        is_deleted: true,
+        accept_terms_and_conditions: false,
+        messenger: "",
+        created_at: "",
+        updated_at: "",
+        categories: []
+    )
+    
     public let id: Int
     public let natural_key: String?
     public let name: String

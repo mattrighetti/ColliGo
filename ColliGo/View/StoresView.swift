@@ -22,6 +22,7 @@ struct StoresView: View {
     
     @ObservedObject var shopViewModel: ShopsViewModel
     @State var showShopInfoModal: Bool = false
+    @State var selectedShop = 0
     
     var userLatitude: CLLocationDegrees
     var userLongitude: CLLocationDegrees
@@ -33,10 +34,12 @@ struct StoresView: View {
         .navigationBarTitle("Negozi")
         }
         .sheet(isPresented: $showShopInfoModal) {
-            StoreView()
+            StoreView(shop: self.shopViewModel.filteredShops.filter({ $0.id == self.selectedShop })[0])
         }
         .onAppear {
-            self.shopViewModel.fetchShops(currLat: self.userLatitude, currLng: self.userLongitude)
+            if !self.shopViewModel.fetchedOnce {
+                self.shopViewModel.fetchShops(currLat: self.userLatitude, currLng: self.userLongitude)
+            }
         }
     }
     
@@ -72,7 +75,12 @@ struct StoresView: View {
                         city: shop.city!,
                         categories: shop.categories,
                         kilometres: shop.distance!
-                    ).listRowBackground(Color("background"))
+                    )
+                    .onTapGesture {
+                        self.showShopInfoModal.toggle()
+                        self.selectedShop = shop.id
+                    }
+                    .listRowBackground(Color("background"))
                 }
             }
         )

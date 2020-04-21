@@ -15,6 +15,7 @@ public final class ShopsViewModel: ObservableObject {
     
     private static let decoder = JSONDecoder()
     
+    @Published public var fetchedOnce: Bool = false
     @Published public var fetching: Bool = false
     @Published public var shops: [Shop] = [Shop]()
     @Published public var filteredShops: [Shop] = [Shop]()
@@ -35,6 +36,7 @@ public final class ShopsViewModel: ObservableObject {
     
     public func fetchShops(currLat: Double, currLng: Double) {
         self.fetching = true
+        self.fetchedOnce = true
         shopsSubscriptions = []
         
         shopsService.publisher()

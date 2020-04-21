@@ -17,6 +17,20 @@ struct MapView: UIViewRepresentable {
     var userLatitude: CLLocationDegrees
     var userLongitude: CLLocationDegrees
     
+    var annotations: [MKPointAnnotation] {
+        var array = [MKPointAnnotation]()
+        
+        self.shopsViewModel.shops.forEach({ shop in
+            let annotation = MKPointAnnotation()
+            annotation.title = shop.name
+            annotation.subtitle = shop.address
+            annotation.coordinate = CLLocationCoordinate2D(latitude: shop.lat!, longitude: shop.lng!)
+            array.append(annotation)
+        })
+        
+        return array
+    }
+    
     class Coordinator: NSObject, MKMapViewDelegate {
         var parent: MapView
 
@@ -25,7 +39,7 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+            let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "map_pin")
             view.canShowCallout = true
             return view
         }
@@ -40,10 +54,16 @@ struct MapView: UIViewRepresentable {
         mapView.delegate = context.coordinator
         
         let currentLocation = CLLocationCoordinate2D(latitude: userLatitude, longitude: userLongitude)
-        let coordinateRegion = MKCoordinateRegion(center: currentLocation, latitudinalMeters: 800, longitudinalMeters: 800)
+        let coordinateRegion = MKCoordinateRegion(center: currentLocation, latitudinalMeters: 5000, longitudinalMeters: 5000)
         mapView.setRegion(coordinateRegion, animated: true)
         mapView.showsUserLocation = true
         mapView.showsCompass = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.annotations.forEach({ annotation in
+                mapView.addAnnotation(annotation)
+            })
+        }
         
         return mapView
     }

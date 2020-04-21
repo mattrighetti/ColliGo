@@ -7,28 +7,34 @@
 //
 
 import SwiftUI
+import ColliGoShopModel
 
 struct StoreView: View {
+    
+    var shop: Shop
+    
     var body: some View {
         ZStack {
             Color("background").edgesIgnoringSafeArea(.all)
             VStack {
-                Image(systemName: "chevron.compact.down")
+                Image(systemName: "chevron.compact.down").padding()
                 
                 VStack(alignment: .leading, spacing: 15) {
                     
-                    Text("Gli Olivi di Etruria APS")
+                    Text(shop.name)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .layoutPriority(1)
                     
                     HStack {
-                        CategoryPill(categoryName: "Oleoteca", fontSize: 20)
-                        CategoryPill(categoryName: "Gastronomia", fontSize: 20)
+                        ForEach(shop.categories, id: \.self.name) { category in
+                            CategoryPill(categoryName: category.name!, fontSize: 15)
+                        }
                         Spacer()
+                            
                     }
                     
-                    Text("Dalle Terre di Etruria, Olio EVO di Eccellenza e Prodotti Locali")
+                    Text(shop.description ?? "")
                             .font(.headline)
                             .fontWeight(.regular)
                             .lineLimit(3)
@@ -38,17 +44,8 @@ struct StoreView: View {
                     
                     VStack(alignment: .leading) {
                         HStack {
-                            VStack {
-                                Image(systemName: "globe").font(.largeTitle)
-                                    .frame(width: 50, height: 50)
-                                Text("Website")
-                            }.padding()
-                            
-                            VStack {
-                                Image("facebook").resizable().frame(width: 50, height: 50)
-                                Text("Facebook Page")
-                            }.padding()
-                            
+                            generateWebsiteIcon()
+                            generateFacebookIcon()
                             Spacer()
                         }
                     }
@@ -57,48 +54,126 @@ struct StoreView: View {
                         Text("Contacts").font(.title).fontWeight(.bold)
                         
                         HStack {
-                            Image("telegram")
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                            
-                            Text("3333333333").font(.headline)
-                        }
-                        
-                        HStack {
-                            Image("phone")
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                            
-                            Text("3333333333").font(.headline)
-                        }
-                        
-                        HStack {
-                            Image("whatsapp")
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                            
-                            
-                            Text("3333333333").font(.headline)
-                        }
-                        
-                        HStack {
-                            Image("messenger")
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                            
-                            Text("3333333333").font(.headline)
+                            generatePhoneIcon()
+                            generateTelegramIcon()
+                            generateWhatsappIcon()
+                            generateMessengerIcon()
                         }
                     }
-                    
                 }.padding()
+                Spacer()
             }
         }
     }
+    
+    func generateWebsiteIcon() -> AnyView {
+        guard let url = shop.facebook else {
+            return AnyView(EmptyView())
+        }
+        
+        return AnyView(
+            VStack {
+                Image(systemName: "globe").font(.largeTitle)
+                    .frame(width: 50, height: 50)
+                Text("Website")
+            }
+            .padding()
+            .onTapGesture {
+                UIApplication.shared.open(URL(string: url)!)
+            }
+        )
+    }
+    
+    func generateFacebookIcon() -> AnyView {
+        guard let url = shop.facebook else {
+            return AnyView(EmptyView())
+        }
+        
+        return AnyView(
+            VStack {
+                Image("facebook")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                Text("Facebook Page")
+            }
+            .padding()
+            .onTapGesture {
+                UIApplication.shared.open(URL(string: url)!)
+            }
+        )
+    }
+    
+    func generateTelegramIcon() -> AnyView {
+        guard let url = shop.telegram else {
+            return AnyView(EmptyView())
+        }
+        
+        return AnyView(
+            Image("telegram")
+                .resizable()
+                .frame(width: 50, height: 50)
+                .padding()
+                .onTapGesture {
+                    UIApplication.shared.open(URL(string: url)!)
+                }
+        )
+    }
+    
+    func generateWhatsappIcon() -> AnyView {
+        guard let url = shop.whatsapp else {
+            return AnyView(EmptyView())
+        }
+        
+        return AnyView(
+            Image("whatsapp")
+                .resizable()
+                .frame(width: 50, height: 50)
+                .padding()
+                .onTapGesture {
+                    UIApplication.shared.open(URL(string: url)!)
+                }
+        )
+    }
+    
+    func generateMessengerIcon() -> AnyView {
+        guard let url = shop.messenger else {
+            return AnyView(EmptyView())
+        }
+        
+        return AnyView(
+            Image("messenger")
+                .resizable()
+                .frame(width: 50, height: 50)
+                .padding()
+                .onTapGesture {
+                    UIApplication.shared.open(URL(string: url)!)
+                }
+        )
+    }
+    
+    func generatePhoneIcon() -> AnyView {
+        guard var url = shop.phone else {
+            return AnyView(EmptyView())
+        }
+        
+        url = "tel://" + url
+        
+        return AnyView(
+            Image("phone")
+                .resizable()
+                .frame(width: 50, height: 50)
+                .padding()
+                .onTapGesture {
+                    UIApplication.shared.open(URL(string: url)!)
+                }
+        )
+    }
+    
 }
 
 struct StoreView_Previews: PreviewProvider {
     static var previews: some View {
-        StoreView()
+        StoreView(shop: Shop.starter)
             .environment(\.colorScheme, .dark)
     }
 }

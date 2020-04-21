@@ -13,29 +13,39 @@ import ColliGoShopModel
 struct HomeView: View {
     
     @ObservedObject var shopsViewModel: ShopsViewModel = ShopsViewModel()
-    
-    var userLatitude: CLLocationDegrees
-    var userLongitude: CLLocationDegrees
+    @ObservedObject var locationManager: LocationManager
     
     var body: some View {
         TabView {
-            StoresView(shopsViewModel: shopsViewModel, userLat: userLatitude, userLng: userLongitude)
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Shops")
-                }
+            StoresView(
+                shopsViewModel: self.shopsViewModel,
+//                userLat: locationManager.lastLocation!.coordinate.latitude,
+                userLat: 41.9028,
+//                userLng: locationManager.lastLocation!.coordinate.longitude
+                userLng: 12.4964
+            )
+            .tabItem {
+                Image(systemName: "house")
+                Text("Shops")
+            }
             
-            MapView(shopsViewModel: self.shopsViewModel, userLatitude: userLatitude, userLongitude: userLongitude)
-                .tabItem {
-                    Image(systemName: "map")
-                    Text("Map")
-                }
+            MapView(
+                shopsViewModel: self.shopsViewModel,
+//                userLat: locationManager.lastLocation!.coordinate.latitude,
+                userLatitude: 41.9028,
+//                userLng: locationManager.lastLocation!.coordinate.longitude
+                userLongitude: 12.4964
+            )
+            .tabItem {
+                Image(systemName: "map")
+                Text("Map")
+            }
         }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(userLatitude: 41.0, userLongitude: 41.0).previewDevice("iPhone 11")
+        HomeView(locationManager: LocationManager()).previewDevice("iPhone 11")
     }
 }
