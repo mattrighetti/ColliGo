@@ -171,7 +171,7 @@ struct CategoryPill: View {
                 .foregroundColor(.white)
                 .padding(5)
                 .background(Color.green)
-                .cornerRadius(15)
+                .cornerRadius(5)
         }
     }
 }
