@@ -18,6 +18,8 @@
 		C9C0F9CE244E7FCF00C4D3FF /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C0F9CD244E7FCF00C4D3FF /* MapView.swift */; };
 		C9C0F9D1244E886500C4D3FF /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C0F9D0244E886500C4D3FF /* LocationManager.swift */; };
 		C9C0F9D7244E957300C4D3FF /* +Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C0F9D6244E957300C4D3FF /* +Double.swift */; };
+		C9E11C7A2450866900228EB2 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E11C792450866900228EB2 /* ExternalAccessory.framework */; };
+		C9E11C7C2450867600228EB2 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E11C7B2450867600228EB2 /* MapKit.framework */; };
 		C9FDD71B244E6E6A003A31CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDD71A244E6E6A003A31CF /* AppDelegate.swift */; };
 		C9FDD71D244E6E6A003A31CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDD71C244E6E6A003A31CF /* SceneDelegate.swift */; };
 		C9FDD71F244E6E6A003A31CF /* StoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDD71E244E6E6A003A31CF /* StoresView.swift */; };
@@ -65,6 +67,9 @@
 		C9C0F9D0244E886500C4D3FF /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C9C0F9D2244E8CF700C4D3FF /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		C9C0F9D6244E957300C4D3FF /* +Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Double.swift"; sourceTree = "<group>"; };
+		C9E11C772450866800228EB2 /* ColliGo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ColliGo.entitlements; sourceTree = "<group>"; };
+		C9E11C792450866900228EB2 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		C9E11C7B2450867600228EB2 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C9FDD717244E6E6A003A31CF /* ColliGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColliGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FDD71A244E6E6A003A31CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9FDD71C244E6E6A003A31CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9E11C7A2450866900228EB2 /* ExternalAccessory.framework in Frameworks */,
+				C9E11C7C2450867600228EB2 /* MapKit.framework in Frameworks */,
 				C9BB36ED244F26E5000380EF /* ColliGoShopModel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,12 +149,22 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C9E11C782450866900228EB2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9E11C7B2450867600228EB2 /* MapKit.framework */,
+				C9E11C792450866900228EB2 /* ExternalAccessory.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C9FDD70E244E6E6A003A31CF = {
 			isa = PBXGroup;
 			children = (
 				C9FDD719244E6E6A003A31CF /* ColliGo */,
 				C9BB36E7244F26E5000380EF /* ColliGoShopModel */,
 				C9FDD718244E6E6A003A31CF /* Products */,
+				C9E11C782450866900228EB2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,6 +180,7 @@
 		C9FDD719244E6E6A003A31CF /* ColliGo */ = {
 			isa = PBXGroup;
 			children = (
+				C9E11C772450866800228EB2 /* ColliGo.entitlements */,
 				C9FDD731244E71BC003A31CF /* Utils */,
 				C9FDD72E244E714A003A31CF /* View */,
 				C9FDD71A244E6E6A003A31CF /* AppDelegate.swift */,
@@ -539,6 +557,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ColliGo/ColliGo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ColliGo/Preview Content\"";
 				DEVELOPMENT_TEAM = H89RFW5UZ6;
@@ -560,6 +579,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ColliGo/ColliGo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ColliGo/Preview Content\"";
 				DEVELOPMENT_TEAM = H89RFW5UZ6;

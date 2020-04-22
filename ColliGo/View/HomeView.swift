@@ -19,10 +19,10 @@ struct HomeView: View {
         TabView {
             StoresView(
                 shopsViewModel: self.shopsViewModel,
-//                userLat: locationManager.lastLocation!.coordinate.latitude,
-                userLat: 41.9028,
-//                userLng: locationManager.lastLocation!.coordinate.longitude
-                userLng: 12.4964
+                userLat: locationManager.lastLocation!.coordinate.latitude,
+//                userLat: 41.9028,
+                userLng: locationManager.lastLocation!.coordinate.longitude
+//                userLng: 12.4964
             )
             .tabItem {
                 Image(systemName: "house")
