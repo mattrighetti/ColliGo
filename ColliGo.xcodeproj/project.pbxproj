@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9555B622450D76C0031933D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C9555B612450D76C0031933D /* Lottie */; };
+		C9555B642450D7830031933D /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9555B632450D7830031933D /* LottieView.swift */; };
+		C9555B692450DB0A0031933D /* blue-preloader.json in Resources */ = {isa = PBXBuildFile; fileRef = C9555B682450DB0A0031933D /* blue-preloader.json */; };
 		C963C392244F282B003193D2 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C0F9D2244E8CF700C4D3FF /* Shop.swift */; };
 		C963C393244F282B003193D2 /* ShopsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BB36DC244F05D6000380EF /* ShopsViewModel.swift */; };
 		C963C394244F282B003193D2 /* ShopsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BB36DA244F04FB000380EF /* ShopsService.swift */; };
@@ -56,6 +59,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C9555B632450D7830031933D /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		C9555B682450DB0A0031933D /* blue-preloader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "blue-preloader.json"; sourceTree = "<group>"; };
 		C9BB36D5244F03B4000380EF /* +Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Bundle.swift"; sourceTree = "<group>"; };
 		C9BB36DA244F04FB000380EF /* ShopsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsService.swift; sourceTree = "<group>"; };
 		C9BB36DC244F05D6000380EF /* ShopsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsViewModel.swift; sourceTree = "<group>"; };
@@ -98,12 +103,21 @@
 				C9E11C7A2450866900228EB2 /* ExternalAccessory.framework in Frameworks */,
 				C9E11C7C2450867600228EB2 /* MapKit.framework in Frameworks */,
 				C9BB36ED244F26E5000380EF /* ColliGoShopModel.framework in Frameworks */,
+				C9555B622450D76C0031933D /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C9555B6A2450DB100031933D /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				C9555B682450DB0A0031933D /* blue-preloader.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		C9BB36D8244F04AD000380EF /* View Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +200,7 @@
 				C9FDD71A244E6E6A003A31CF /* AppDelegate.swift */,
 				C9FDD71C244E6E6A003A31CF /* SceneDelegate.swift */,
 				C9FDD720244E6E6B003A31CF /* Assets.xcassets */,
+				C9555B6A2450DB100031933D /* Lottie */,
 				C9FDD725244E6E6B003A31CF /* LaunchScreen.storyboard */,
 				C9FDD728244E6E6B003A31CF /* Info.plist */,
 				C9FDD722244E6E6B003A31CF /* Preview Content */,
@@ -208,6 +223,7 @@
 				C9FDD72F244E716A003A31CF /* HomeView.swift */,
 				C9FDD736244E75A0003A31CF /* StoreView.swift */,
 				C9C0F9CD244E7FCF00C4D3FF /* MapView.swift */,
+				C9555B632450D7830031933D /* LottieView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -270,6 +286,9 @@
 				C9BB36EC244F26E5000380EF /* PBXTargetDependency */,
 			);
 			name = ColliGo;
+			packageProductDependencies = (
+				C9555B612450D76C0031933D /* Lottie */,
+			);
 			productName = ColliGo;
 			productReference = C9FDD717244E6E6A003A31CF /* ColliGo.app */;
 			productType = "com.apple.product-type.application";
@@ -301,6 +320,9 @@
 				Base,
 			);
 			mainGroup = C9FDD70E244E6E6A003A31CF;
+			packageReferences = (
+				C9555B602450D76C0031933D /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = C9FDD718244E6E6A003A31CF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -325,6 +347,7 @@
 			files = (
 				C9FDD727244E6E6B003A31CF /* LaunchScreen.storyboard in Resources */,
 				C9FDD724244E6E6B003A31CF /* Preview Assets.xcassets in Resources */,
+				C9555B692450DB0A0031933D /* blue-preloader.json in Resources */,
 				C9FDD721244E6E6B003A31CF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +379,7 @@
 				C9C0F9D1244E886500C4D3FF /* LocationManager.swift in Sources */,
 				C9FDD71D244E6E6A003A31CF /* SceneDelegate.swift in Sources */,
 				C9FDD737244E75A0003A31CF /* StoreView.swift in Sources */,
+				C9555B642450D7830031933D /* LottieView.swift in Sources */,
 				C9FDD71F244E6E6A003A31CF /* StoresView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +495,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -531,6 +556,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -627,6 +653,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C9555B602450D76C0031933D /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C9555B612450D76C0031933D /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9555B602450D76C0031933D /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C9FDD70F244E6E6A003A31CF /* Project object */;
 }

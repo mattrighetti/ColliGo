@@ -57,10 +57,16 @@ struct StoresView: View {
     }
     
     func showFetching() -> AnyView {
+//        return AnyView(
+//            ZStack {
+//                Color("background").edgesIgnoringSafeArea(.all)
+//                Text("Sto ottenendo i dati...")
+//            }
+//        )
         return AnyView(
             ZStack {
                 Color("background").edgesIgnoringSafeArea(.all)
-                Text("Sto ottenendo i dati...")
+                LottieView(lottieAnimation: "blue-preloader").frame(width: 100, height: 100, alignment: .center)
             }
         )
     }
