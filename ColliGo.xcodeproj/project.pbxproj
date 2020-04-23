@@ -14,6 +14,7 @@
 		C963C393244F282B003193D2 /* ShopsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BB36DC244F05D6000380EF /* ShopsViewModel.swift */; };
 		C963C394244F282B003193D2 /* ShopsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BB36DA244F04FB000380EF /* ShopsService.swift */; };
 		C963C395244F282B003193D2 /* ShopsDataPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BB36DF244F06AD000380EF /* ShopsDataPublisher.swift */; };
+		C980661224523DE300677732 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C980661124523DE300677732 /* SplashScreen.swift */; };
 		C9BB36D6244F03B4000380EF /* +Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BB36D5244F03B4000380EF /* +Bundle.swift */; };
 		C9BB36EA244F26E5000380EF /* ColliGoShopModel.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BB36E8244F26E5000380EF /* ColliGoShopModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9BB36ED244F26E5000380EF /* ColliGoShopModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9BB36E6244F26E5000380EF /* ColliGoShopModel.framework */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		C9555B632450D7830031933D /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		C9555B682450DB0A0031933D /* blue-preloader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "blue-preloader.json"; sourceTree = "<group>"; };
+		C980661124523DE300677732 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		C9BB36D5244F03B4000380EF /* +Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Bundle.swift"; sourceTree = "<group>"; };
 		C9BB36DA244F04FB000380EF /* ShopsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsService.swift; sourceTree = "<group>"; };
 		C9BB36DC244F05D6000380EF /* ShopsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsViewModel.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				C9FDD736244E75A0003A31CF /* StoreView.swift */,
 				C9C0F9CD244E7FCF00C4D3FF /* MapView.swift */,
 				C9555B632450D7830031933D /* LottieView.swift */,
+				C980661124523DE300677732 /* SplashScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C980661224523DE300677732 /* SplashScreen.swift in Sources */,
 				C9C0F9CE244E7FCF00C4D3FF /* MapView.swift in Sources */,
 				C9FDD71B244E6E6A003A31CF /* AppDelegate.swift in Sources */,
 				C9FDD730244E716A003A31CF /* HomeView.swift in Sources */,

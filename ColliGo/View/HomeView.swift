@@ -16,7 +16,7 @@ struct HomeView: View {
     @EnvironmentObject var locationManager: LocationManager
     
     @State var showLocationManagerNotAuthorized: Bool = true
-    @State var showSplashscreen: Bool = true
+    @State var showSplashscreen: Bool
     
     var body: some View {
         TabView {
@@ -50,9 +50,14 @@ struct HomeView: View {
                 }
         }.sheet(isPresented: $showSplashscreen, onDismiss: {
             self.locationManager.askUserPermission()
+            UserDefaults.standard.set(true, forKey: "splashScreenShown")
         }, content: {
-            Text("Ok")
-        })
+            SplashScreen(isModalShown: self.$showSplashscreen)
+        }).onAppear {
+            if !self.showSplashscreen {
+                self.locationManager.askUserPermission()
+            }
+        }
     }
     
     func generateStoresView(withAuth auth: Bool) -> AnyView {
@@ -93,7 +98,7 @@ var locationManager: LocationManager = LocationManager()
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().environmentObject(locationManager).previewDevice("iPhone 11")
+        HomeView(showSplashscreen: true).environmentObject(locationManager).previewDevice("iPhone 11")
     }
 }
 #endif
