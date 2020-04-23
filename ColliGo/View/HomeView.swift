@@ -54,7 +54,8 @@ struct HomeView: View {
         }, content: {
             SplashScreen(isModalShown: self.$showSplashscreen)
         }).onAppear {
-            if !self.showSplashscreen {
+            if !self.showSplashscreen && !self.shopsViewModel.fetchedOnce {
+                print("Fetching first time")
                 self.locationManager.askUserPermission()
             }
         }

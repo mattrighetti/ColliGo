@@ -51,17 +51,18 @@ struct MapView: UIViewRepresentable {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         
-        let currentLocation = CLLocationCoordinate2D(latitude: (locationManager.lastLocation?.coordinate.latitude)!, longitude: locationManager.lastLocation!.coordinate.longitude)
-        let coordinateRegion = MKCoordinateRegion(center: currentLocation, latitudinalMeters: 5000, longitudinalMeters: 5000)
-        mapView.setRegion(coordinateRegion, animated: true)
+//        let currentLocation = CLLocationCoordinate2D(latitude: locationManager.lastLocation!.coordinate.latitude, longitude: locationManager.lastLocation!.coordinate.longitude)
+//        let coordinateRegion = MKCoordinateRegion(center: currentLocation, latitudinalMeters: 5000, longitudinalMeters: 5000)
+//        mapView.setRegion(coordinateRegion, animated: true)
         mapView.showsUserLocation = true
         mapView.showsCompass = true
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.annotations.forEach({ annotation in
-                mapView.addAnnotation(annotation)
-            })
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            self.annotations.forEach({ annotation in
+                mapView.showAnnotations(annotations, animated: true)
+//                mapView.addAnnotation(annotation)
+//            })
+//        }
         
         return mapView
     }

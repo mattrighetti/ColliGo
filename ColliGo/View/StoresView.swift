@@ -58,7 +58,9 @@ struct StoresView: View {
     }
     
     func generateView() -> AnyView {
-        while shopViewModel.fetching || waitingForLastLocation {
+        while (shopViewModel.fetching || waitingForLastLocation) && !(shopViewModel.fetchedOnce) {
+            print("fetching -> " + String(shopViewModel.fetching))
+            print("waiting -> " + String(waitingForLastLocation))
             return showLoading()
         }
         
