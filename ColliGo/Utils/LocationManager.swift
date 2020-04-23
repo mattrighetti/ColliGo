@@ -17,14 +17,10 @@ class LocationManager: NSObject, ObservableObject {
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.showsBackgroundLocationIndicator = true
-        self.locationManager.startUpdatingLocation()
-        
-        DispatchQueue.global().asyncAfter(deadline: .now() + 5) {
-            self.locationManager.stopUpdatingLocation()
-            self.locationManager.showsBackgroundLocationIndicator = false
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            self.locationManager.requestLocation()
         }
-        
     }
 
     @Published var locationStatus: CLAuthorizationStatus? {
@@ -34,6 +30,12 @@ class LocationManager: NSObject, ObservableObject {
     }
 
     @Published var lastLocation: CLLocation? {
+        willSet {
+            objectWillChange.send()
+        }
+    }
+    
+    @Published var hasAuth: Bool = false {
         willSet {
             objectWillChange.send()
         }
@@ -52,7 +54,6 @@ class LocationManager: NSObject, ObservableObject {
             case .denied: return "denied"
             default: return "unknown"
         }
-
     }
 
     let objectWillChange = PassthroughSubject<Void, Never>()
@@ -63,6 +64,12 @@ class LocationManager: NSObject, ObservableObject {
 extension LocationManager: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if !hasAuth {
+            if status == .authorizedAlways || status == .authorizedWhenInUse {
+                self.hasAuth = true
+            }
+        }
+        
         self.locationStatus = status
         print(#function, statusString)
     }
@@ -71,6 +78,11 @@ extension LocationManager: CLLocationManagerDelegate {
         guard let location = locations.last else { return }
         self.lastLocation = location
         print(#function, location)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        self.locationStatus = .denied
+        print(error)
     }
 
 }

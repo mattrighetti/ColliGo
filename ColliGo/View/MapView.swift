@@ -12,10 +12,8 @@ import ColliGoShopModel
 
 struct MapView: UIViewRepresentable {
     
+    @EnvironmentObject var locationManager: LocationManager
     @ObservedObject var shopsViewModel: ShopsViewModel
-    
-    var userLatitude: CLLocationDegrees
-    var userLongitude: CLLocationDegrees
     
     var annotations: [MKPointAnnotation] {
         var array = [MKPointAnnotation]()
@@ -53,7 +51,7 @@ struct MapView: UIViewRepresentable {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         
-        let currentLocation = CLLocationCoordinate2D(latitude: userLatitude, longitude: userLongitude)
+        let currentLocation = CLLocationCoordinate2D(latitude: (locationManager.lastLocation?.coordinate.latitude)!, longitude: locationManager.lastLocation!.coordinate.longitude)
         let coordinateRegion = MKCoordinateRegion(center: currentLocation, latitudinalMeters: 5000, longitudinalMeters: 5000)
         mapView.setRegion(coordinateRegion, animated: true)
         mapView.showsUserLocation = true
@@ -74,6 +72,6 @@ struct MapView: UIViewRepresentable {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(shopsViewModel: ShopsViewModel(), userLatitude: 41.0, userLongitude: 41.0)
+        MapView(shopsViewModel: ShopsViewModel())
     }
 }

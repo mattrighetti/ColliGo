@@ -9,23 +9,23 @@
 import SwiftUI
 import ColliGoShopModel
 import MapKit
+import Combine
 
 struct StoresView: View {
     
-    init(shopsViewModel: ShopsViewModel, userLat: CLLocationDegrees, userLng: CLLocationDegrees) {
-        UITableView.appearance().backgroundColor = UIColor(named: "background")
-        UITableView.appearance().separatorColor = UIColor(named: "background")
-        self.userLatitude = userLat
-        self.userLongitude = userLng
-        self.shopViewModel = shopsViewModel
-    }
-    
+    @EnvironmentObject var locationManager: LocationManager
     @ObservedObject var shopViewModel: ShopsViewModel
     @State var showShopInfoModal: Bool = false
     @State var selectedShop = 0
+    @State var waitingForLastLocation = true
     
-    var userLatitude: CLLocationDegrees
-    var userLongitude: CLLocationDegrees
+    private var subscriptions = Set<AnyCancellable>()
+    
+    init(shopsViewModel: ShopsViewModel) {
+        UITableView.appearance().backgroundColor = UIColor(named: "background")
+        UITableView.appearance().separatorColor = UIColor(named: "background")
+        self.shopViewModel = shopsViewModel
+    }
     
     var body: some View {
         NavigationView {
@@ -37,15 +37,24 @@ struct StoresView: View {
             StoreView(shop: self.shopViewModel.filteredShops.filter({ $0.id == self.selectedShop })[0])
         }
         .onAppear {
-            if !self.shopViewModel.fetchedOnce {
-                self.shopViewModel.fetchShops(currLat: self.userLatitude, currLng: self.userLongitude)
-            }
+            self.locationManager.$lastLocation.sink { value in
+                print("Received value")
+                if let coordinates = value {
+                    print(coordinates.coordinate.latitude)
+                    print(coordinates.coordinate.longitude)
+                    self.shopViewModel.fetchShops(
+                        currLat: coordinates.coordinate.latitude,
+                        currLng: coordinates.coordinate.longitude
+                    )
+                    self.waitingForLastLocation.toggle()
+                }
+            }.store(in: &self.shopViewModel.subscriptions)
         }
     }
     
     func generateView() -> AnyView {
-        while shopViewModel.fetching {
-            return showFetching()
+        while shopViewModel.fetching || waitingForLastLocation {
+            return showLoading()
         }
         
         if shopViewModel.filteredShops.count > 0 {
@@ -53,16 +62,9 @@ struct StoresView: View {
         } else {
             return notifyNoShopAvailable()
         }
-        
     }
     
-    func showFetching() -> AnyView {
-//        return AnyView(
-//            ZStack {
-//                Color("background").edgesIgnoringSafeArea(.all)
-//                Text("Sto ottenendo i dati...")
-//            }
-//        )
+    func showLoading() -> AnyView {
         return AnyView(
             ZStack {
                 Color("background").edgesIgnoringSafeArea(.all)
@@ -99,7 +101,7 @@ struct StoresView: View {
                 VStack {
                     Image(systemName: "mappin.slash")
                         .font(.system(size: 50))
-                        .padding()
+                        .padding(20)
                     
                     Text("Non sono disponibili negozi nella tua zona").font(.headline)
                 }
@@ -184,6 +186,6 @@ struct CategoryPill: View {
 
 struct StoresView_Previews: PreviewProvider {
     static var previews: some View {
-        StoresView(shopsViewModel: ShopsViewModel(), userLat: 41.0, userLng: 41.0).environment(\.colorScheme, .dark)
+        StoresView(shopsViewModel: ShopsViewModel()).environment(\.colorScheme, .dark)
     }
 }

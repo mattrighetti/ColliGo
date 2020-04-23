@@ -13,39 +13,79 @@ import ColliGoShopModel
 struct HomeView: View {
     
     @ObservedObject var shopsViewModel: ShopsViewModel = ShopsViewModel()
-    @ObservedObject var locationManager: LocationManager
+    @EnvironmentObject var locationManager: LocationManager
+    
+    @State var showLocationManagerNotAuthorized: Bool = true
     
     var body: some View {
         TabView {
-            StoresView(
-                shopsViewModel: self.shopsViewModel,
-                userLat: locationManager.lastLocation!.coordinate.latitude,
-//                userLat: 41.9028,
-                userLng: locationManager.lastLocation!.coordinate.longitude
-//                userLng: 12.4964
-            )
-            .tabItem {
-                Image(systemName: "house")
-                Text("Shops")
-            }
-            
-            MapView(
-                shopsViewModel: self.shopsViewModel,
-//                userLat: locationManager.lastLocation!.coordinate.latitude,
-                userLatitude: 41.9028,
-//                userLng: locationManager.lastLocation!.coordinate.longitude
-                userLongitude: 12.4964
-            )
-            .tabItem {
-                Image(systemName: "map")
-                Text("Map")
-            }
+            locationManager.hasAuth ?
+                Group {
+                    generateStoresView(withAuth: true)
+                    .tabItem {
+                        Image(systemName: "house")
+                        Text("Shops")
+                    }
+                    
+                    generateMapView(withAuth: true)
+                    .tabItem {
+                        Image(systemName: "map")
+                        Text("Map")
+                    }
+                }
+            :
+                Group {
+                    generateStoresView(withAuth: false)
+                    .tabItem {
+                        Image(systemName: "house")
+                        Text("Shops")
+                    }
+                    
+                    generateMapView(withAuth: false)
+                    .tabItem {
+                        Image(systemName: "map")
+                        Text("Map")
+                    }
+                }
         }
     }
+    
+    func generateStoresView(withAuth auth: Bool) -> AnyView {
+        if auth {
+            return AnyView(
+                StoresView(
+                    shopsViewModel: self.shopsViewModel
+                )
+            )
+        }
+        
+        return AnyView(
+            Text("The app needs your location to work properly")
+        )
+    }
+    
+    func generateMapView(withAuth auth: Bool) -> AnyView {
+        if auth {
+            return AnyView(
+                MapView(
+                    shopsViewModel: self.shopsViewModel
+                )
+            )
+        }
+        
+        return AnyView(
+            Text("The app needs your location to work properly")
+        )
+    }
+    
 }
+
+#if DEBUG
+var locationManager: LocationManager = LocationManager()
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(locationManager: LocationManager()).previewDevice("iPhone 11")
+        HomeView().environmentObject(locationManager).previewDevice("iPhone 11")
     }
 }
+#endif

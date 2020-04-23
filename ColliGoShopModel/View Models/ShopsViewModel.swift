@@ -22,11 +22,11 @@ public final class ShopsViewModel: ObservableObject {
     
     private let shopsService: ShopServiceDataPublisher
     
-    private var subscriptions = Set<AnyCancellable>()
+    public var subscriptions = Set<AnyCancellable>()
     private var shopsSubscriptions = Set<AnyCancellable>()
     
-    public init(shopsService: ShopServiceDataPublisher = ShopsService()) {
-        self.shopsService = shopsService
+    public init() {
+        self.shopsService = ShopsService()
         
         $shops
             .map { _ in false }
