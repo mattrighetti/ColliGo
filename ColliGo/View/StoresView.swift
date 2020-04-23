@@ -19,8 +19,6 @@ struct StoresView: View {
     @State var selectedShop = 0
     @State var waitingForLastLocation = true
     
-    private var subscriptions = Set<AnyCancellable>()
-    
     init(shopsViewModel: ShopsViewModel) {
         UITableView.appearance().backgroundColor = UIColor(named: "background")
         UITableView.appearance().separatorColor = UIColor(named: "background")
@@ -32,13 +30,20 @@ struct StoresView: View {
             generateView()
         
         .navigationBarTitle("Negozi")
+        .navigationBarItems(trailing: AnyView(
+            Button(action: {
+                self.waitingForLastLocation.toggle()
+                self.locationManager.askUserPermission()
+            }, label: {
+                Image(systemName: "arrow.2.circlepath")
+            })
+        ))
         }
         .sheet(isPresented: $showShopInfoModal) {
             StoreView(shop: self.shopViewModel.filteredShops.filter({ $0.id == self.selectedShop })[0])
         }
         .onAppear {
             self.locationManager.$lastLocation.sink { value in
-                print("Received value")
                 if let coordinates = value {
                     print(coordinates.coordinate.latitude)
                     print(coordinates.coordinate.longitude)
@@ -68,7 +73,10 @@ struct StoresView: View {
         return AnyView(
             ZStack {
                 Color("background").edgesIgnoringSafeArea(.all)
-                LottieView(lottieAnimation: "blue-preloader").frame(width: 100, height: 100, alignment: .center)
+                VStack {
+                    Text(waitingForLastLocation ? "Ottengo la posizione" : "Ottengo i negozi")
+                    LottieView(lottieAnimation: "blue-preloader").frame(width: 100, height: 100, alignment: .center)
+                }
             }
         )
     }

@@ -16,6 +16,7 @@ struct HomeView: View {
     @EnvironmentObject var locationManager: LocationManager
     
     @State var showLocationManagerNotAuthorized: Bool = true
+    @State var showSplashscreen: Bool = true
     
     var body: some View {
         TabView {
@@ -47,7 +48,11 @@ struct HomeView: View {
                         Text("Map")
                     }
                 }
-        }
+        }.sheet(isPresented: $showSplashscreen, onDismiss: {
+            self.locationManager.askUserPermission()
+        }, content: {
+            Text("Ok")
+        })
     }
     
     func generateStoresView(withAuth auth: Bool) -> AnyView {
@@ -60,7 +65,10 @@ struct HomeView: View {
         }
         
         return AnyView(
-            Text("The app needs your location to work properly")
+            ZStack {
+                Color("background")
+                Text("The app needs your location to work properly")
+            }
         )
     }
     

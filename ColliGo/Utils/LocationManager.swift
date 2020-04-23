@@ -16,11 +16,6 @@ class LocationManager: NSObject, ObservableObject {
         super.init()
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            self.locationManager.requestLocation()
-        }
     }
 
     @Published var locationStatus: CLAuthorizationStatus? {
@@ -59,6 +54,16 @@ class LocationManager: NSObject, ObservableObject {
     let objectWillChange = PassthroughSubject<Void, Never>()
 
     private let locationManager = CLLocationManager()
+    
+    
+    func askUserPermission() {
+        print("Asking permissions")
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            self.locationManager.requestLocation()
+        }
+    }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
