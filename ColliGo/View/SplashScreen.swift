@@ -39,7 +39,7 @@ struct SplashScreen: View {
                 generateButton().padding()
                 Spacer()
                 HStack {
-                    Image("baseline_chevron_left_green").frame(width: 7, height: 7, alignment: .center)
+                    Image(systemName: "chevron.left").frame(width: 7, height: 7, alignment: .center).foregroundColor(Color(hex:0x50af69))
                     Circle()
                         .fill(currentFeature == 0 ? Color.green : Color.gray)
                         .frame(width: 7, height: 7, alignment: .center)
@@ -59,7 +59,7 @@ struct SplashScreen: View {
                     Circle()
                         .fill(currentFeature == 4 ? Color.green : Color.gray)
                         .frame(width: 7, height: 7, alignment: .center)
-                    Image("baseline_chevron_right_green").frame(width: 2, height: 2, alignment: .center)
+                    Image(systemName: "chevron.right").frame(width: 2, height: 2, alignment: .center).foregroundColor(Color(hex:0x50af69))
                 }
                 }.frame(alignment: Alignment.bottomLeading).padding(10)
         }.gesture(
