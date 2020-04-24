@@ -31,34 +31,37 @@ struct SplashScreen: View {
         ZStack {
             Color("background").edgesIgnoringSafeArea(.all)
             VStack {
-                Image(systemName: "chevron.compact.down").padding()
+                // forse per ora è meglio non mostrarla, è fuorviante per la maggior parte dei test
+                //Image(systemName: "chevron.compact.down").padding()
                 Spacer()
                 FeatureView(feature: features[currentFeature])
                 Spacer()
                 generateButton().padding()
                 Spacer()
                 HStack {
+                    Image("baseline_chevron_left_green").frame(width: 7, height: 7, alignment: .center)
                     Circle()
                         .fill(currentFeature == 0 ? Color.green : Color.gray)
-                        .frame(width: 5, height: 5, alignment: .center)
+                        .frame(width: 7, height: 7, alignment: .center)
                     
                     Circle()
                         .fill(currentFeature == 1 ? Color.green : Color.gray)
-                        .frame(width: 5, height: 5, alignment: .center)
+                        .frame(width: 7, height: 7, alignment: .center)
                     
                     Circle()
                         .fill(currentFeature == 2 ? Color.green : Color.gray)
-                        .frame(width: 5, height: 5, alignment: .center)
+                        .frame(width: 7, height: 7, alignment: .center)
                     
                     Circle()
                         .fill(currentFeature == 3 ? Color.green : Color.gray)
-                        .frame(width: 5, height: 5, alignment: .center)
+                        .frame(width: 7, height: 7, alignment: .center)
                     
                     Circle()
                         .fill(currentFeature == 4 ? Color.green : Color.gray)
-                        .frame(width: 5, height: 5, alignment: .center)
+                        .frame(width: 7, height: 7, alignment: .center)
+                    Image("baseline_chevron_right_green").frame(width: 2, height: 2, alignment: .center)
                 }
-            }
+                }.frame(alignment: Alignment.bottomLeading).padding(10)
         }.gesture(
             DragGesture(minimumDistance: 10, coordinateSpace: .global)
                 .onEnded({ value in
@@ -82,11 +85,32 @@ struct SplashScreen: View {
             }, label: {
                 Text("Avanti")
             })
+            .frame(width: 100, height: 50)
+                .background(Color.white)
+                .foregroundColor(Color(hex:0x50af69)).cornerRadius(10)
+            
         )
         :
         AnyView(EmptyView())
     }
     
+}
+
+extension Color {
+    init(hex: Int, alpha: Double = 1) {
+        let components = (
+            R: Double((hex >> 16) & 0xff) / 255,
+            G: Double((hex >> 08) & 0xff) / 255,
+            B: Double((hex >> 00) & 0xff) / 255
+        )
+        self.init(
+            .sRGB,
+            red: components.R,
+            green: components.G,
+            blue: components.B,
+            opacity: alpha
+        )
+    }
 }
 
 struct FeatureView: View {
