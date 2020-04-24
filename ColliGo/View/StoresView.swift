@@ -33,6 +33,7 @@ struct StoresView: View {
         .navigationBarItems(trailing: AnyView(
             Button(action: {
                 self.waitingForLastLocation.toggle()
+                self.shopViewModel.fetchedOnce.toggle()
                 self.locationManager.askUserPermission()
             }, label: {
                 Image(systemName: "arrow.2.circlepath")
@@ -59,8 +60,6 @@ struct StoresView: View {
     
     func generateView() -> AnyView {
         while (shopViewModel.fetching || waitingForLastLocation) && !(shopViewModel.fetchedOnce) {
-            print("fetching -> " + String(shopViewModel.fetching))
-            print("waiting -> " + String(waitingForLastLocation))
             return showLoading()
         }
         
